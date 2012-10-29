@@ -7,11 +7,13 @@ import android.graphics.drawable.Drawable;
 
 public class OperationDrawnItem extends DrawnItem {
 
-	Drawable operationDrawable;
+	private Resources resources;
+	private Drawable operationDrawable;
 	
 	public OperationDrawnItem(int left, int top, int right, int bottom,
 			int resId, Resources resources, int operationResId) {
 		super(left, top, right, bottom, resId, resources);
+		this.resources = resources;
 		operationDrawable = resources.getDrawable(operationResId);
 	}
 	
@@ -20,6 +22,10 @@ public class OperationDrawnItem extends DrawnItem {
 		super.draw(c);
 		operationDrawable.setBounds(new Rect(drawRect.left + 10, drawRect.top + 10, drawRect.right - 10, drawRect.bottom - 10));
 		operationDrawable.draw(c);
+	}
+	
+	public void setOperationDrawable(int resId) {
+		operationDrawable = resources.getDrawable(resId);
 	}
 
 }

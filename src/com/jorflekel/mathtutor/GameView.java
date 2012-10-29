@@ -126,8 +126,8 @@ public class GameView extends View {
 			staticCrates.add(new Crate(crateSize, (int) (w * .9f)
 					+ (int) (.33f * crateSize), i, getResources()));
 		}
-		problem = generateAdditionProblem();
-		
+		problem = generateRandomProblem();
+		operationDrawnItem.setOperationDrawable(problem[2] == 0 ? R.drawable.plus : R.drawable.minus);
 		for(int i = 0; i < problem[0]; i++) {
 			int diameter = leftBoxDrawnItem.width() / 7;
 			leftBalls.add(new Ball(diameter, leftBoxDrawnItem.left() + diameter + diameter * (i % 5), leftBoxDrawnItem.bottom() - diameter * (i / 5 + 1) - 10, getResources()));
@@ -181,10 +181,21 @@ public class GameView extends View {
 				}
 			}
 			currentCrate = null;
+			invalidate();
 			return false;
 		}
 		invalidate();
 		return true;
+	}
+	
+	private static int[] generateRandomProblem() {
+		if(Math.random() > .5) {
+			int[] result = generateAdditionProblem();
+			return new int[] {result[0], result[1], 0};
+		} else {
+			int[] result = generateSubtractionProblem();
+			return new int[] {result[0], result[1], 1};
+		}
 	}
 	
 	private static int[] generateAdditionProblem() {
