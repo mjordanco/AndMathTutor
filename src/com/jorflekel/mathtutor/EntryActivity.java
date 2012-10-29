@@ -1,4 +1,4 @@
-package com.flejorkel.andmathtutor;
+package com.jorflekel.mathtutor;
 
 import android.os.Bundle;
 import android.app.Activity;
@@ -9,7 +9,7 @@ public class EntryActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_entry);
+        setContentView(new GameView(this));
     }
 
     @Override
